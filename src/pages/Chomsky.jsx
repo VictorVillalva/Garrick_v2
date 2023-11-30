@@ -32,7 +32,10 @@ const Chomsky = () => {
             <div className="container">
                 <div className="code">
                     <h2>Ingrese el codigo</h2>
-                    <div className="txtCode">
+                    <textarea className='txtCode2' name="Code" id="" cols="30" rows="10">
+
+                    </textarea>
+                    {/* <div className="txtCode">
                         <Editor
                             height='35rem'
                             width='90%'
@@ -42,7 +45,7 @@ const Chomsky = () => {
                             onChange={(value) => setcontentCode(value)}
                             onMount={handleEditorDidMount}
                         />
-                    </div>
+                    </div> */}
                     <button className="button-1" onClick={handleCheck}>Revisar</button>
                 </div>
                 <div className="pila">

@@ -1,5 +1,6 @@
 /* Tipografia Raleway */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 * {
     background-color: #131313;
@@ -55,6 +56,17 @@ h2 {
     height: 40rem;
     display: flex;
     justify-content: center;
+}
+.txtCode2 {
+    width: 80%;
+    height: 15rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: #FFFFFF;
+    font-family: 'JetBrains Mono';
+    font-size: .7rem;
+    font-weight: 400;
 }
 
 .button-1{
