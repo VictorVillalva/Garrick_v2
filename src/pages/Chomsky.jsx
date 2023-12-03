@@ -30,14 +30,7 @@ const Chomsky = () => {
     const [result, setResult] = useState([]);
     const [opc, setOpc] = useState(0);
     const [stackInfo, setStackInfo] = useState([]);
-
-
-
-
-
-
-
-
+    const [clicked, setClicked] = useState('');
 
 
     const handlerCodeText = (e) => {
@@ -46,10 +39,11 @@ const Chomsky = () => {
 
     //Aqui sirve para que cuando de click lo guarda 
     const handleCheck = () => {
+        
 
         console.log(editorData.current.getValue())
 
-        //todo el show del automata
+        //Todo el show del automata
         function isNoTerminal(element) {
             const terminales = ["S", "MO", "A", "PA", "U", "L", "S2", "CL", "B", "C", "D", "E", "F", "CO", "CI", "CF", "PI", "PF", "S3", "FU", "B1", "D1", "F1", "I", "S4", "C1", "B2", "D2", "F2", "D3", "OP", "NU", "N", "K", "S5", "M", "S6", "TD", "B3", "E2", "E3", "S7", "B4", "S8", "F3", "VA", "B5", "PC", "V1", "ST", "TX", "RTX", "V2", "IN", "B6", "E5", "DIG", "V3", "BO", "B7", "E6", "F4", "BO2", "CM", "DP"]
             return !(terminales.indexOf(element) === -1)
@@ -719,9 +713,9 @@ const Chomsky = () => {
             }
         }
 
-        const handleCheck = (e) => {
-            e.preventDefault();
+        const handleCheck = (operation) => {
             console.log(codeContent)
+            
             //validarSintaxisModulo(codeContent)
             //validarSintaxisClasse(codeContent)
             //validarSintaxisFuncion(codeContent)
@@ -778,6 +772,14 @@ const Chomsky = () => {
                         <h2 className='subtitle-code'>Verificaciones</h2>
                         <div className="txtArea-div-Code">
                             <textarea className='txtArea-code' contentEditable={"false"} name="code" cols="30" rows="10" value={result}></textarea> 
+                        </div>
+                    </div>
+                </section>
+                <section className='container-data'>
+                    <div className="data-code-2">
+                        <h2 className='subtitle-code'>Verificaciones</h2>
+                        <div className="txtArea-div-result">
+                            <p className='txt-data-results'>Hola mundo Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet fugit nulla ratione, neque tenetur voluptates perferendis magni voluptatibus reprehenderit culpa beatae aliquam explicabo iure facilis? Eius nemo nulla nobis voluptatem.</p>
                         </div>
                     </div>
                 </section>
