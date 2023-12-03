@@ -15,7 +15,7 @@ const Chomsky = () => {
     const handleEditorDidMount = (editor, monaco) => {
         editorData.current = editor
     }
-
+2337
     //Aqui sirve para que cuando de click lo guarda 
     const handleCheck = () =>{
         console.log(editorData.current.getValue())
