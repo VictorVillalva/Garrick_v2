@@ -5,123 +5,257 @@
 * {
     background-color: #131313;
 }
-
-.header-chomsky {
-    margin-left: 5%;
-    width: 70%;
-    height: 20rem;
-}
-
-.title-chosmky {
-    font-family: "Raleway";
-    font-weight: 300;
-    color: #ffffff;
-    font-size: 4rem;
-}
-
-.language-name {
-    font-size: 7rem;
-    font-weight: 600;
-    color: rgb(211, 63, 63);
-}
-
-#G {
-    width: 5rem;
-    margin-left: 3rem;
-}
-
-.container {
+header{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-}
 
-.code,
-.pila {
+    .title-language{
+        font-family: 'Raleway';
+        font-weight: 600;
+        font-size: 3rem;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .name-language-program{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .garrick-name{
+            font-family: 'Raleway';
+            font-weight: 400;
+            font-size: 12vh;
+            text-align: center;
+            color: rgb(77, 77, 77);
+            transition: .3s;
+            
+        }
+        .garrick-name:hover{
+            color: rgb(211, 63, 63);
+            transition: .3s;
+            cursor: pointer;
+        }
+        .garrick-icon{
+            width: 12vh;
+        }
+    }
+
+}
+.container-verification{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .options-bottoms{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .option{
+            font-family: 'Raleway';
+            font-weight: 600;
+            font-size: .9rem;
+            height: 3rem;
+            width: 8rem;
+            border: none;
+            border-left: #131313 solid 1px;
+            background-color: #ffffff;
+            transition: .3s;
+        }
+        .option:hover{
+            background-color: rgb(211, 63, 63);
+            transition: .3s;
+            color: #FFFFFF;
+        }
+    }
+    .form-code{
+        width: 100%;
+        text-align: center;
+
+
+
+        .textarea-code{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .txtCode-2{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 40%;
+                height: 30rem;
+            }
+        }
+        .button-verific{
+            margin-top: 10vh;
+            margin-bottom: 15vh;
+            font-family: 'Raleway';
+            font-weight: 600;
+            height: 2rem;
+            width: 10rem;
+            border: none;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: .3s;
+        }
+        .button-verific:hover{
+            background-color: rgb(211, 63, 63);
+            transition: .3s;
+            color: #ffffff;
+        }
+    }
+
+
 }
 
-h2 {
-    font-family: "Raleway";
-    font-weight: 500;
-    color: #ffffff;
-    font-size: 1rem;
-}
-
-.txtCode {
+.container-data{
     width: 100%;
-    height: 40rem;
-    display: flex;
-    justify-content: center;
-}
-.txtCode2 {
-    width: 80%;
-    height: 15rem;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-    color: #FFFFFF;
-    font-family: 'JetBrains Mono';
-    font-size: .7rem;
-    font-weight: 400;
-}
 
-.button-1{
-    font-family: 'Raleway';
-    font-weight: 600;
-    height: 2rem;
-    width: 10rem;
-    border: none;
-    background-color: #ffffff;
-    border-radius: 2px;
-    transition: .3s;
-}
-.button-1:hover{
-    background-color: rgb(211, 63, 63);
-    transition: .3s;
-    color: #ffffff;
-}
+    .txtArea-div-Code{
+        width: 100%;
+        display: flex;
+        justify-content: center;
 
+        .txtArea-code{
+            font-family: 'JetBrains Mono';
+            color: #FFFFFF;
+            width: 40%;
+            height: 30rem;
+        }
+    }
+
+    .data-code-2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .txtArea-div-result{
+            width: 80%;
+            height: 30rem;
+            background-color: #FFFFFF;
+
+            .txt-data-results{
+                width: 98%;
+                padding-left: 2%;
+                background-color: #FFFFFF;
+                font-family: 'JetBrains Mono';
+                color: #131313;
+                font-size: .7rem
+            }
+        }
+    }
+
+
+}
 footer{
-    margin-top: 10rem;
-    height: 10rem;
-    display: flex;
-    align-items: center;
-}
-.logo-garrick{
-    height: 10rem;
-    width: 20rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.github{
-    height: 2rem;
     width: 100%;
-    display: flex;
-}
-.victor,.jesus{
-    display: flex;
-    width: 60%;
-    justify-content: center;
-    align-items: center;
-}
-.gtb{
-    width: 40px;
-}
-a{
-    text-decoration: none;
-    color: #FFFFFF;
-    font-family: 'Raleway';
-    font-weight: 200;
+    margin-top: 5rem;
     
+    .name-language-container{
+        display: flex;
+        justify-content: center;
+        
+        .garrick-name{
+            font-family: 'Raleway';
+            font-weight: 400;
+            font-size: 4vh;
+            text-align: center;
+            color: rgb(77, 77, 77);
+            transition: .3s;
+            
+        }
+        .garrick-name:hover{
+            color: rgb(211, 63, 63);
+            transition: .3s;
+            cursor: pointer;
+        }
+        .garrick-icon{
+            width: 4vh;
+        }
+    }
 }
-.name{
+.data-code-pila{
+    width: 100%;
+
+    .comparation{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .data-coding{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .option{
+                margin-top: 5%;
+                font-family: 'Raleway';
+                font-weight: 600;
+                font-size: .9rem;
+                height: 3rem;
+                width: 8rem;
+                border: none;
+                border-left: #131313 solid 1px;
+                background-color: #ffffff;
+                transition: .3s;
+            }
+            .option:hover{
+                background-color: rgb(211, 63, 63);
+                transition: .3s;
+                color: #FFFFFF;
+            }
+
+            .txtCode-2{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 80%;
+                height: 20rem;
+            }
+        }
+        .data-pila{
+            width: 100% ;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .txtArea-code{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 80%;
+                height: 20rem;
+            }   
+
+            .borrar{
+                margin-top: 5%;
+                font-family: 'Raleway';
+                font-weight: 600;
+                font-size: .9rem;
+                height: 3rem;
+                width: 8rem;
+                border: none;
+                border-left: #131313 solid 1px;
+                background-color: #ffffff;
+                transition: .3s;
+            }
+            .borrar:hover{
+                background-color: rgb(211, 63, 63);
+                transition: .3s;
+                color: #FFFFFF;
+            } 
+        }
+    }
+
+}
+
+.subtitle-code{
     font-family: 'Raleway';
-    font-weight: 500;
+    font-weight: 300;
+    text-align: center;
     color: #FFFFFF;
 }
+
+
+
 
