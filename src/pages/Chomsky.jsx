@@ -2,34 +2,33 @@ import '../assets/styles/chomsky.css';
 import G from '../assets/image/Icono-Language.svg'
 import Git from '../assets/image/GitHub.svg'
 import { Editor } from '@monaco-editor/react';
-import { useState, useRef } from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 
-//ATENCION VICTOR
-/*
-EN EL DIV DONDO VA EL CAMPO DE TEXTO DONDE PONEMOS LA CADENA QUE SE VA A VALIDAR
-HAY QUE PONER BOTONES PARA SELECCIONAR
-ejemplo:
-|modulo|class|
-
-le da click a class y el boton se pone rojo, ahora opc vale 2 y cuando le da a validar segun la opcion activa el
-validarSintaxisClase por ejemplo y asi con todos
-
- */
-
-//TAMBIEN
-
-/*
-EN CADA METODO DE VALIDAR HAY CONSOLE.LOGS QUE SON LO QUE SE DEBERIA MOSTRAR EN EL FRONT, VAS A VER LA FORMA DE
-PONER TODO EL LOG EN UNA VARIABLE POR EJEMPLO STACKINFO Y UNA VEZ QUE ACABE LA VALIDACION MUESTRE EL RESULTADO EN OTRO DIV
-O AL MISMO TIEMPO QUE LE AGREGUES INFO Y OBVIAMENTE QUE SE VEA BIEN
- */
 
 const Chomsky = () => {
     const [codeContent, setCodeContent]= useState("")
-    const [result, setResult] =useState([])
     const [opc,setOpc]=useState(0)
-    const [stackInfo, setStackInfo]=useState([])
+    const [stackInfo, setStackInfo] = useState([]);
+
+    useEffect(() => {
+        const originalConsoleLog = console.log;
+
+        // Sobrescribe console.log para capturar los mensajes y actualizar el estado
+        console.log = (...args) => {
+            originalConsoleLog(...args); // Llama a la función original de console.log
+
+            // Almacena los mensajes en el estado local
+            setStackInfo(prevLogs => [...prevLogs, args.join(' ')]);
+        };
+
+        // Restaura la función original de console.log al desmontar el componente
+        return () => {
+            console.log = originalConsoleLog;
+        };
+    }, []); // El efecto solo se ejecuta una vez al montar el componente
+
+
 
     const handlerCodeText=(e) =>{
         setCodeContent(e.target.value)
@@ -127,8 +126,8 @@ const Chomsky = () => {
     function validarSintaxisModulo(string){
         let stack =["$","S"]
         let stringStack = string.split(" ")
-        console.log("la pila es:", stack)
-        console.log("la cadena a evaluar es:", stringStack)
+        console.log("la pila es:", stack.toString())
+        console.log("la cadena a evaluar es:", stringStack.toString())
         while(stack.length>0){
             let x=stack.pop();
             console.log("el elemento de la pila tope es: ",x)
@@ -136,6 +135,7 @@ const Chomsky = () => {
                 console.log("cadena finalizada - cadena valida")
             }else if(isNoTerminal(x)){
                 console.log(x, "no es un terminal")
+
                 const production = getProduction(x)
                 if(production){
                     for(let i = 0;i<=production.length-1;i++){
@@ -147,10 +147,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es:", stack)
+                    console.log("la nueva pila es:", stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
 
@@ -168,7 +168,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -178,8 +178,8 @@ const Chomsky = () => {
     function validarSintaxisClasse(string){
         let stack = ["$","S2"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x = stack.pop()
             console.log("el elemento de la pila tope es: ",x)
@@ -200,7 +200,7 @@ const Chomsky = () => {
 
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se encontro produccion valida")
                     break;
@@ -219,7 +219,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -229,8 +229,8 @@ const Chomsky = () => {
     function validarSintaxisFuncion(string){
         let stack =["$","S3"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ",stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ",stringStack.toString())
         while (stack.length>0){
             let x = stack.pop()
             console.log("el elemento de la pila tope es: ",x)
@@ -249,10 +249,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ",stack)
+                    console.log("la nueva pila es: ",stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ",stack)
+                    console.log("la pila quedo asi: ",stack.toString())
                     break
                 }
             }else{
@@ -269,7 +269,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -280,8 +280,8 @@ const Chomsky = () => {
     function validarSintaxisCiclo(string){
         let stack=["$","S4"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ",stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ",stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x=stack.pop()
             console.log("el elemento de la pila tope es: ",x)
@@ -302,10 +302,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
             }else{
@@ -342,7 +342,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
 
@@ -354,8 +354,8 @@ const Chomsky = () => {
     function validarSintaxisIf(string){
         let stack=["$","S5"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ",stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ",stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x=stack.pop()
             console.log("el elemento de la pila tope es: ",x)
@@ -376,10 +376,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
             }else{
@@ -416,7 +416,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
 
@@ -428,8 +428,8 @@ const Chomsky = () => {
     function validarSintaxisCallFunction(string){
         let stack= ["$","S7"]
         let stringStack = string.match(/([a-zA-Z]+|\S)/g)
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x=stack.pop()
             console.log("el elemento de la pila tope es: ", x)
@@ -446,7 +446,7 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ",stack)
+                    console.log("la nueva pila es: ",stack.toString())
                 }else{
                     console.log("no se encontro produccion valida")
                     break;
@@ -465,7 +465,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -475,8 +475,8 @@ const Chomsky = () => {
     function validarSintaxisCondiciones(string){
         let stack = ["$","S8"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x = stack.pop()
             console.log("el elemento de la pila tope es: ", x)
@@ -495,7 +495,7 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se encontro produccion valida")
                     break;
@@ -526,7 +526,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -536,8 +536,8 @@ const Chomsky = () => {
     function validarStringDeclaracionVariable(string){
         let stack=["$","V1"]
         let stringStack = string.split(" ")
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ",stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ",stringStack.toString())
         while(stack.length>0){
             let x= stack.pop()
             console.log("el elemento de la pila tope es: ", x)
@@ -557,10 +557,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
             }else{
@@ -584,7 +584,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
 
@@ -597,8 +597,8 @@ const Chomsky = () => {
     function validarIntDeclarationVariable(string){
         let stack =["$","V2"]
         let stringStack = string.split(" ");
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while (stack.length>0){
             let x = stack.pop()
             console.log("el elemento de la pila tope es: ", x)
@@ -617,17 +617,16 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ", stack)
+                    console.log("la nueva pila es: ", stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
             }else{
                 console.log(x, " es un terminal")
                 let y = stringStack.pop();
                 console.log("el elemento tope de la cadena es: ", y)
-                console.log("allY es: ", stringStack.length)
                 if (stringStack.length===3){
                     let regex=/^[0-9]*$/
                     if (regex.test(y)){
@@ -644,7 +643,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -654,8 +653,8 @@ const Chomsky = () => {
     function validarBoolDeclarationVariable(string){
         let stack=["$","V3"]
         let stringStack = string.split(" ");
-        console.log("la pila es: ", stack)
-        console.log("la cadena a evaluar es: ", stringStack)
+        console.log("la pila es: ", stack.toString())
+        console.log("la cadena a evaluar es: ", stringStack.toString())
         while(stack.length>0){
             let x=stack.pop()
             console.log("el elemento de la pila tope es: ", x)
@@ -674,10 +673,10 @@ const Chomsky = () => {
                             stack.push(production[i])
                         }
                     }
-                    console.log("la nueva pila es: ",stack)
+                    console.log("la nueva pila es: ",stack.toString())
                 }else{
                     console.log("no se pudo encontrar produccion")
-                    console.log("la pila quedo asi: ", stack)
+                    console.log("la pila quedo asi: ", stack.toString())
                     break;
                 }
             }else{
@@ -700,7 +699,7 @@ const Chomsky = () => {
                     console.log("sintaxis valida entre pila y cadena")
                 }else{
                     console.log("sintaxis invalida entre pila y cadena")
-                    console.log("la pila queda asi:", stack)
+                    console.log("la pila queda asi:", stack.toString())
                     break;
                 }
             }
@@ -709,8 +708,8 @@ const Chomsky = () => {
 
     const handleCheck = (e) =>{
         e.preventDefault();
-        console.log(codeContent)
-        console.log("opcion: ", opc)
+        setStackInfo([])
+
         switch (opc){
             case 1:
                 validarSintaxisModulo(codeContent)
@@ -797,7 +796,7 @@ const Chomsky = () => {
                 </form>
                 <div className="pila">
                     <h2>Pila</h2>
-                    <textarea className='txtCode2' contentEditable={"false"} name="Code" id="" cols="30" rows="10" value={result}/>
+                    <textarea className='txtCode2' contentEditable={"false"} name="Code" id="" cols="30" rows="10" value={stackInfo.join('\n')}/>
                 </div>
             </div>
             <footer>
