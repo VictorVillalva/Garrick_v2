@@ -45,37 +45,45 @@ header{
 .container-verification{
     width: 100%;
 
+    .options-bottoms{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .option{
+            font-family: 'Raleway';
+            font-weight: 600;
+            font-size: .9rem;
+            height: 3rem;
+            width: 8rem;
+            border: none;
+            border-left: #131313 solid 1px;
+            background-color: #ffffff;
+            transition: .3s;
+        }
+        .option:hover{
+            background-color: rgb(211, 63, 63);
+            transition: .3s;
+            color: #FFFFFF;
+        }
+    }
     .form-code{
         width: 100%;
         text-align: center;
 
-        .options-bottoms{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
 
-            .option{
-                font-family: 'Raleway';
-                font-weight: 600;
-                font-size: .9rem;
-                height: 3rem;
-                width: 8rem;
-                border: none;
-                border-left: #131313 solid 1px;
-                background-color: #ffffff;
-                transition: .3s;
-            }
-            .option:hover{
-                background-color: rgb(211, 63, 63);
-                transition: .3s;
-                color: #FFFFFF;
-            }
-        }
 
         .textarea-code{
             width: 100%;
             display: flex;
             justify-content: center;
+
+            .txtCode-2{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 40%;
+                height: 30rem;
+            }
         }
         .button-verific{
             margin-top: 10vh;
@@ -98,12 +106,7 @@ header{
 
 
 }
-.subtitle-code{
-    font-family: 'Raleway';
-    font-weight: 300;
-    text-align: center;
-    color: #FFFFFF;
-}
+
 .container-data{
     width: 100%;
 
@@ -115,7 +118,7 @@ header{
         .txtArea-code{
             font-family: 'JetBrains Mono';
             color: #FFFFFF;
-            width: 80%;
+            width: 40%;
             height: 30rem;
         }
     }
@@ -169,6 +172,88 @@ footer{
             width: 4vh;
         }
     }
+}
+.data-code-pila{
+    width: 100%;
+
+    .comparation{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .data-coding{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .option{
+                margin-top: 5%;
+                font-family: 'Raleway';
+                font-weight: 600;
+                font-size: .9rem;
+                height: 3rem;
+                width: 8rem;
+                border: none;
+                border-left: #131313 solid 1px;
+                background-color: #ffffff;
+                transition: .3s;
+            }
+            .option:hover{
+                background-color: rgb(211, 63, 63);
+                transition: .3s;
+                color: #FFFFFF;
+            }
+
+            .txtCode-2{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 80%;
+                height: 20rem;
+            }
+        }
+        .data-pila{
+            width: 100% ;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            .txtArea-code{
+                font-family: 'JetBrains Mono';
+                color: #FFFFFF;
+                width: 80%;
+                height: 20rem;
+            }   
+
+            .borrar{
+                margin-top: 5%;
+                font-family: 'Raleway';
+                font-weight: 600;
+                font-size: .9rem;
+                height: 3rem;
+                width: 8rem;
+                border: none;
+                border-left: #131313 solid 1px;
+                background-color: #ffffff;
+                transition: .3s;
+            }
+            .borrar:hover{
+                background-color: rgb(211, 63, 63);
+                transition: .3s;
+                color: #FFFFFF;
+            } 
+        }
+    }
+
+}
+
+.subtitle-code{
+    font-family: 'Raleway';
+    font-weight: 300;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 

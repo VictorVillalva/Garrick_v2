@@ -2,33 +2,15 @@ import '../assets/styles/chomsky.css';
 import G from '../assets/image/Icono-Language.svg'
 import Git from '../assets/image/GitHub.svg'
 import { Editor } from '@monaco-editor/react';
-import { useState, useRef , useEffect} from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 
-//ATENCION VICTOR
-/*
-EN EL DIV DONDE VA EL CAMPO DE TEXTO DONDE PONEMOS LA CADENA QUE SE VA A VALIDAR
-HAY QUE PONER BOTONES PARA SELECCIONAR
-ejemplo:
-|modulo|class|
-
-le da click a class y el boton se pone rojo, ahora opc vale 2 y cuando le da a validar segun la opcion activa el
-validarSintaxisClase por ejemplo y asi con todos
-
- */
-
-//TAMBIEN
-
-/*
-EN CADA METODO DE VALIDAR HAY CONSOLE.LOGS QUE SON LO QUE SE DEBERIA MOSTRAR EN EL FRONT, VAS A VER LA FORMA DE
-PONER TODO EL LOG EN UNA VARIABLE POR EJEMPLO STACKINFO Y UNA VEZ QUE ACABE LA VALIDACION MUESTRE EL RESULTADO EN OTRO DIV
-O AL MISMO TIEMPO QUE LE AGREGUES INFO Y OBVIAMENTE QUE SE VEA BIEN
- */
 
 const Chomsky = () => {
     const [codeContent, setCodeContent]= useState("")
     const [opc,setOpc]=useState(0)
     const [stackInfo, setStackInfo] = useState([]);
+
 
     useEffect(() => {
         const originalConsoleLog = console.log;
@@ -51,7 +33,9 @@ const Chomsky = () => {
 
     const handlerCodeText=(e) =>{
         setCodeContent(e.target.value)
+        
     }
+
 
     //todo el show del puto automata
     function isNoTerminal(element){
@@ -767,65 +751,50 @@ const Chomsky = () => {
         return (
             <>
                 <header>
-                    <h1 className='title-language'>Lenguaje de Programación</h1>
                     <div className="name-language-program">
                         <img src={G} alt="" className='garrick-icon'/>
                         <h1 className='garrick-name'>Garrick</h1>
                     </div>
                 </header>
                 <section className="container-verification">
-                    <form className='form-code'>
-                        <div className="options-bottoms">
+                    <div className="options-bottoms">
                             <button className="option" 
-                                style={opc === 1 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(1); }}>Modulo</button>
+                                style={opc === 1 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF"} : {}} onClick={() => { setOpc(1); }}>Modulo</button>
                             <button className="option"
-                                style={opc === 2 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(2); }}>Clase</button>
+                                style={opc === 2 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(2); }}>Clase</button>
                             <button className="option" 
-                                style={opc === 3 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(3); }}>Función</button>
+                                style={opc === 3 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(3); }}>Función</button>
                             <button className="option" 
-                                style={opc === 4 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(4); }}>If</button>
+                                style={opc === 4 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(4); }}>Ciclo</button>
                             <button className="option" 
-                                style={opc === 5 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(5); }}>Llamada Funcion</button>
+                                style={opc === 5 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(5); }}>If</button>
                             <button className="option" 
-                                style={opc === 6 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(6); }}>Condición</button>
+                                style={opc === 6 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(6); }}>Llamada a funcion</button>
                             <button className="option" 
-                                style={opc === 7 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(7); }}>Declaración Variable</button>
+                                style={opc === 7 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(7); }}>Comparacion</button>
                             <button className="option" 
-                                style={opc === 8 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(8); }}>Declaración Doble Variable</button>
+                                style={opc === 8 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(8); }}>Declaración String Variable</button>
                             <button className="option" 
-                                style={opc === 9 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(9); }}>Declaración Doble Variable</button>
+                                style={opc === 9 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(9); }}>Declaración Int Variable</button>
                             <button className="option" 
-                                style={opc === 10 ? { backgroundColor: "rgb(211, 63, 63)" } : {}} onClick={() => { setOpc(10); }}>Declaración Doble Variable</button>
-                        </div>
-                        <h2 className='subtitle-code'>Ingrese el codigo</h2>
-                        <div className="textarea-code">
-                            <Editor
-                                height='30rem'
-                                width='80%'
-                                loading='Cargando'
-                                theme='vs-dark'
-                                value='###WELCOME TO GARRICK'
-                                onChange={handlerCodeText}
-                            />
-                            
-                        </div>
-                        <button className="button-verific" onClick={handleCheck}>Revisar</button>
-                    </form>
-                </section>
-                <section className="container-data">
-                    <div className="data-code">
-                        <h2 className='subtitle-code'>Verificaciones</h2>
-                        <div className="txtArea-div-Code">
-                            <textarea className='txtArea-code' contentEditable={"false"} name="code" cols="30" rows="10" value={stackInfo.join('\n')}></textarea> 
-                        </div>
+                                style={opc === 10 ? { backgroundColor: "rgb(211, 63, 63)", color: "#FFFFFF" } : {}} onClick={() => { setOpc(10); }}>Declaración Bool Variable</button>
                     </div>
                 </section>
-                <section className='container-data'>
-                    <div className="data-code-2">
-                        <h2 className='subtitle-code'>Verificaciones</h2>
-                        <div className="txtArea-div-result">
-                            <p className='txt-data-results'>Hola mundo Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet fugit nulla ratione, neque tenetur voluptates perferendis magni voluptatibus reprehenderit culpa beatae aliquam explicabo iure facilis? Eius nemo nulla nobis voluptatem.</p>
-                            <p className='txt-data-results'>{stackInfo}</p>
+                <section className="data-code-pila">z
+                    <div className="comparation">
+                        <div className="data-coding">
+                            <form className='code'>
+                                <h2 className='subtitle-code'>Ingrese el codigo</h2>
+                                <textarea className='txtCode-2' name="Code" id="" cols="30" rows="10" onChange={handlerCodeText}/>
+                                <button className='option' onClick={handleCheck}>Verificar</button>
+                            </form>
+                        </div>
+                        <div className="data-pila">
+                            <form action="">
+                                <h2 className='subtitle-code'>Verificación</h2>
+                                <textarea className='txtArea-code' contentEditable={"false"} name="code" cols="30" rows="10" value={stackInfo.join('\n')}></textarea> 
+                                {/* <button className='borrar' >Limpiar</button> */}
+                            </form>
                         </div>
                     </div>
                 </section>
