@@ -3,6 +3,7 @@ import G from '../assets/image/Icono-Language.svg'
 import Git from '../assets/image/GitHub.svg'
 import { Editor } from '@monaco-editor/react';
 import {useState, useRef, useEffect} from 'react';
+import Swal from 'sweetalert2'
 
 
 
@@ -136,6 +137,17 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ",x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
+
             }else if(isNoTerminal(x)){
                 console.log(x, "no es un terminal")
 
@@ -188,6 +200,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ",x)
             if (x==="$"){
                 console.log("cadena finalizada-cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x," no es un terminal")
                 const production = getProduction(x)
@@ -239,6 +261,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ",x)
             if (x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x, " no es un terminal")
                 const production = getProduction(x)
@@ -290,6 +322,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ",x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if (isNoTerminal(x)){
                 console.log(x, " no es un terminal")
                 const production = getProduction(x)
@@ -364,6 +406,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ",x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if (isNoTerminal(x)){
                 console.log(x, " no es un terminal")
                 const production = getProduction(x)
@@ -438,6 +490,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ", x)
             if (x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x," no es un terminal")
                 const production = getProduction(x)
@@ -485,6 +547,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ", x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x, " no es un terminal")
                 const production = getProduction(x)
@@ -546,6 +618,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ", x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x, " no es un terminal")
                 const production = getProduction(x)
@@ -607,6 +689,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ", x)
             if(x==="$"){
                 console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if(isNoTerminal(x)){
                 console.log(x, "no es un terminal")
                 const production = getProduction(x)
@@ -663,6 +755,16 @@ const Chomsky = () => {
             console.log("el elemento de la pila tope es: ", x)
             if (x==="$"){
             console.log("cadena finalizada - cadena valida")
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats...',
+                    footer: 'Cadena finalizada en estado de aceptación',
+                    text: `Cadena ${codeContent} Valida`,
+                    background: "#131313",
+                    color: "#fff",
+                    confirmButtonColor: "#870202",
+                    iconColor: "#870202"
+                })
             }else if (isNoTerminal(x)){
                 console.log(x," no es un terminal")
                 const production = getProduction(x)
