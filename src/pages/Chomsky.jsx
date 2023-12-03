@@ -30,7 +30,6 @@ const Chomsky = () => {
     const [result, setResult] = useState([]);
     const [opc, setOpc] = useState(0);
     const [stackInfo, setStackInfo] = useState([]);
-    const [isClicked, setIsClicked] = useState(false);
 
 
 
@@ -753,11 +752,11 @@ const Chomsky = () => {
                             <button className="option" >Modulo</button>
                             <button className="option" >Clase</button>
                             <button className="option" >Función</button>
-                            <button className="option">If</button>
-                            <button className="option">Llamada Funcion</button>
-                            <button className="option">Condición</button>
-                            <button className="option">Declaración Variable</button>
-                            <button className="option">Declaración Doble Variable</button>
+                            <button className="option" >If</button>
+                            <button className="option" >Llamada Funcion</button>
+                            <button className="option" >Condición</button>
+                            <button className="option" >Declaración Variable</button>
+                            <button className="option" >Declaración Doble Variable</button>
                         </div>
                         <h2 className='subtitle-code'>Ingrese el codigo</h2>
                         <div className="textarea-code">
