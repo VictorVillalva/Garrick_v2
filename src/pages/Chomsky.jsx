@@ -472,7 +472,7 @@ const Chomsky = () => {
         }
     }
 
-    function validarCondiciones(string){
+    function validarSintaxisCondiciones(string){
         let stack = ["$","S8"]
         let stringStack = string.split(" ")
         console.log("la pila es: ", stack)
@@ -651,7 +651,7 @@ const Chomsky = () => {
         }
     }
 
-    function validarDoubleDeclarationVariable(string){
+    function validarBoolDeclarationVariable(string){
         let stack=["$","V3"]
         let stringStack = string.split(" ");
         console.log("la pila es: ", stack)
@@ -710,16 +710,39 @@ const Chomsky = () => {
     const handleCheck = (e) =>{
         e.preventDefault();
         console.log(codeContent)
-        //validarSintaxisModulo(codeContent)
-        //validarSintaxisClasse(codeContent)
-        //validarSintaxisFuncion(codeContent)
-        //validarSintaxisCiclo(codeContent)
-        //validarSintaxisIf(codeContent)
-        //validarSintaxisCallFunction(codeContent)
-        //validarCondiciones(codeContent)
-        //validarStringDeclaracionVariable(codeContent)
-        //validarIntDeclarationVariable(codeContent)
-        //validarDoubleDeclarationVariable(codeContent)
+        console.log("opcion: ", opc)
+        switch (opc){
+            case 1:
+                validarSintaxisModulo(codeContent)
+                break;
+            case 2:
+                validarSintaxisClasse(codeContent)
+                break;
+            case 3:
+                validarSintaxisFuncion(codeContent)
+                break;
+            case 4:
+                validarSintaxisCiclo(codeContent)
+                break;
+            case 5:
+                validarSintaxisIf(codeContent)
+                break;
+            case 6:
+                validarSintaxisCallFunction(codeContent)
+                break;
+            case 7:
+                validarSintaxisCondiciones(codeContent)
+                break;
+            case 8:
+                validarStringDeclaracionVariable(codeContent)
+                break;
+            case 9:
+                validarIntDeclarationVariable(codeContent)
+                break;
+            case 10:
+                validarBoolDeclarationVariable(codeContent)
+                break;
+        }
 
 
     }
@@ -729,6 +752,43 @@ const Chomsky = () => {
             <header className="header-chomsky">
                 <h1 className="title-chosmky">Lenguaje de programación <label className="language-name">Garrick</label> <img src={G} alt="G" id="G" /></h1>
             </header>
+            <div>
+                <div>
+                    <h2> opciones </h2>
+                </div>
+                <div>
+                    <button style={opc === 1 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(1); }}>
+                        modulo
+                    </button>
+                    <button style={opc === 2 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(2); }}>
+                        clase
+                    </button>
+                    <button style={opc === 3 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(3); }}>
+                        funcion
+                    </button>
+                    <button style={opc === 4 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(4); }}>
+                        ciclo
+                    </button>
+                    <button style={opc === 5 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(5); }}>
+                        if
+                    </button>
+                    <button style={opc === 6 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(6); }}>
+                        llamada a funcion
+                    </button>
+                    <button style={opc === 7 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(7); }}>
+                        comparaciones
+                    </button>
+                    <button style={opc === 8 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(8); }}>
+                        variable string
+                    </button>
+                    <button style={opc === 9 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(9); }}>
+                        variable int
+                    </button>
+                    <button style={opc === 10 ? { backgroundColor: "red" } : {}} onClick={() => { setOpc(10); }}>
+                        variable bool
+                    </button>
+                </div>
+            </div>
             <div className="container">
                 <form className="code">
                     <h2>Ingrese el codigo</h2>
