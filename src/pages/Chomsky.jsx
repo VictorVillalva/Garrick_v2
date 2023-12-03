@@ -18,7 +18,7 @@ const Chomsky = () => {
 
     //todo el show del puto automata
     function isNoTerminal(element){
-    const terminales =[ "S","MO", "A", "PA","U","L", "S2","CL","B","C","D","E","F","CO","CI","CF","PI","PF","S3","FU","B1","D1","F1","I","S4","C1","B2","D2","F2","D3","OP","NU","N","K","S5","M","S6","TD","B3","E2","E3","S7","B4","S8","F3","VA","B5","PC"]
+    const terminales =[ "S","MO", "A", "PA","U","L", "S2","CL","B","C","D","E","F","CO","CI","CF","PI","PF","S3","FU","B1","D1","F1","I","S4","C1","B2","D2","F2","D3","OP","NU","N","K","S5","M","S6","TD","B3","E2","E3","S7","B4","S8","F3","VA","B5","PC","V1","ST","TX","RTX","V2","IN","B6","E5","DIG","V3","BO","B7","E6","F4","BO2","CM","DP"]
         return !(terminales.indexOf(element) === -1)
     }
 
@@ -66,12 +66,30 @@ const Chomsky = () => {
         "S5":["IF","B2"],
         "M":["CO", "CF"],
         //declaracion de variables
-        "S6":["TD", "B3"],
-        "TD":["tipo de dato"],
+        "DP":[":"],
+        //string
+        "V1":["ST", "B3"],
+        "ST":["string"],
         "B3":["PA", "E2"],
-        "E2":["E3","PC"],
-        "E3":["valor"],
+        "E2":["DP","E3"],
+        "E3":["CM", "TX"],
+        "TX":["PA","RTX"],
+        "RTX":["CM","PC"],
+        "CM":['"'],
         "PC":[";"],
+        //int
+        "V2":["IN", "B6"],
+        "IN":["int"],
+        "B6":["PA", "E5"],
+        "E5":["DP","DIG"],
+        "DIG":["NU", "PC"],
+        //bool
+        "V3":["BO","B7"],
+        "BO":["bool"],
+        "B7":["PA","E6"],
+        "E6":["DP","F4"],
+        "F4":["BO2","PC"],
+        "BO2":["true","false"],
         //llamada a funcion
         "S7":["PA","B4"],
         "B4":["PI","B5"],
@@ -122,7 +140,7 @@ const Chomsky = () => {
                 let y = stringStack.pop()
                 console.log("el elemento tope de la cadena es: ", y)
                 if(stringStack.length===1){
-                 let regex = /^[a-z]+$/
+                 let regex = /^[a-zA-Z]+$/
                  if (regex.test(y)){
                      y="nombre"
                  }
@@ -173,7 +191,7 @@ const Chomsky = () => {
                 let y = stringStack.pop();
                 console.log("el elemento tope de la cadena es: ", y)
                 if(stringStack.length===1){
-                    let regex=/^[a-z]+$/
+                    let regex=/^[a-zA-Z]+$/
                     if (regex.test(y)){
                         y="nombre"
                     }
@@ -223,7 +241,7 @@ const Chomsky = () => {
                 let y = stringStack.pop()
                 console.log("el elemento tope de la cadena es: ", y)
                 if(stringStack.length===1){
-                    let regex = /^[a-z]+$/
+                    let regex = /^[a-zA-Z]+$/
                     if (regex.test(y)){
                         y="nombre"
                     }
@@ -296,7 +314,7 @@ const Chomsky = () => {
                    }
                }
                if(stringStack.length===2){
-                   let regex = /^[a-z]+$/
+                   let regex = /^[a-zA-Z]+$/
                    if (regex.test(y)){
                        y="nombre"
                    }
@@ -370,7 +388,7 @@ const Chomsky = () => {
                     }
                 }
                 if(stringStack.length===2){
-                    let regex = /^[a-z]+$/
+                    let regex = /^[a-zA-Z]+$/
                     if (regex.test(y)){
                         y="nombre"
                     }
@@ -419,7 +437,7 @@ const Chomsky = () => {
                 let y = stringStack.pop();
                 console.log("el elemento tope de la cadena es: ", y)
                 if(stringStack.length===0){
-                    let regex=/^[a-z]+$/
+                    let regex=/^[a-zA-Z]+$/
                     if (regex.test(y)){
                         y="nombre"
                     }
@@ -468,7 +486,7 @@ const Chomsky = () => {
                 let y = stringStack.pop();
                 console.log("el elemento tope de la cadena es: ", y)
                 if(stringStack.length===0){
-                    let regex=/^[a-z]+$/
+                    let regex=/^[a-zA-Z]+$/
                     if (regex.test(y)){
                         y="nombre"
                     }
@@ -496,9 +514,178 @@ const Chomsky = () => {
         }
     }
 
-    function validarDeclaracionVariable(string){
-        let stack=["$","S6"]
+    function validarStringDeclaracionVariable(string){
+        let stack=["$","V1"]
+        let stringStack = string.split(" ")
+        console.log("la pila es: ", stack)
+        console.log("la cadena a evaluar es: ",stringStack)
+        while(stack.length>0){
+            let x= stack.pop()
+            console.log("el elemento de la pila tope es: ", x)
+            if(x==="$"){
+                console.log("cadena finalizada - cadena valida")
+            }else if(isNoTerminal(x)){
+                console.log(x, " no es un terminal")
+                const production = getProduction(x)
+                console.log("la produccion es: ", production)
+                if(production){
+                    for (let i=0; i<=production.length-1;i++){
+                        if(production[i]==="PA"){
+                            stack.push("palabra")
+                        }else if(production[i]==="BO2"){
+                            stack.push("true|false")
+                        }else{
+                            stack.push(production[i])
+                        }
+                    }
+                    console.log("la nueva pila es: ", stack)
+                }else{
+                    console.log("no se pudo encontrar produccion")
+                    console.log("la pila quedo asi: ", stack)
+                    break;
+                }
+            }else{
+                console.log(x, " es un terminal")
+                let y = stringStack.pop()
+                console.log("el elemento tope de la cadena es: ", y)
 
+                if(stringStack.length===4){
+                    let regex=/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/
+                    if(regex.test(y)){
+                        y="palabra"
+                    }
+                }
+                if(stringStack.length===1){
+                    let regex = /^[a-zA-Z]+$/
+                    if (regex.test(y)){
+                        y="palabra"
+                    }
+                }
+                if(x===y){
+                    console.log("sintaxis valida entre pila y cadena")
+                }else{
+                    console.log("sintaxis invalida entre pila y cadena")
+                    console.log("la pila queda asi:", stack)
+                    break;
+                }
+
+            }
+        }
+
+
+    }
+
+    function validarIntDeclarationVariable(string){
+        let stack =["$","V2"]
+        let stringStack = string.split(" ");
+        console.log("la pila es: ", stack)
+        console.log("la cadena a evaluar es: ", stringStack)
+        while (stack.length>0){
+            let x = stack.pop()
+            console.log("el elemento de la pila tope es: ", x)
+            if(x==="$"){
+                console.log("cadena finalizada - cadena valida")
+            }else if(isNoTerminal(x)){
+                console.log(x, "no es un terminal")
+                const production = getProduction(x)
+                if (production){
+                    for(let i=0; i<=production.length-1;i++){
+                        if(production[i]==="PA"){
+                            stack.push("nombre")
+                        }else if (production[i]==="NU"){
+                            stack.push("numero")
+                        }else{
+                            stack.push(production[i])
+                        }
+                    }
+                    console.log("la nueva pila es: ", stack)
+                }else{
+                    console.log("no se pudo encontrar produccion")
+                    console.log("la pila quedo asi: ", stack)
+                    break;
+                }
+            }else{
+                console.log(x, " es un terminal")
+                let y = stringStack.pop();
+                console.log("el elemento tope de la cadena es: ", y)
+                console.log("allY es: ", stringStack.length)
+                if (stringStack.length===3){
+                    let regex=/^[0-9]*$/
+                    if (regex.test(y)){
+                        y="numero"
+                    }
+                }
+                if (stringStack.length===1){
+                    let regex = /^[a-zA-Z]+$/
+                    if (regex.test(y)){
+                        y="nombre"
+                    }
+                }
+                if(x===y){
+                    console.log("sintaxis valida entre pila y cadena")
+                }else{
+                    console.log("sintaxis invalida entre pila y cadena")
+                    console.log("la pila queda asi:", stack)
+                    break;
+                }
+            }
+        }
+    }
+
+    function validarDoubleDeclarationVariable(string){
+        let stack=["$","V3"]
+        let stringStack = string.split(" ");
+        console.log("la pila es: ", stack)
+        console.log("la cadena a evaluar es: ", stringStack)
+        while(stack.length>0){
+            let x=stack.pop()
+            console.log("el elemento de la pila tope es: ", x)
+            if (x==="$"){
+            console.log("cadena finalizada - cadena valida")
+            }else if (isNoTerminal(x)){
+                console.log(x," no es un terminal")
+                const production = getProduction(x)
+                if (production){
+                    for (let i=0;i<=production.length-1;i++){
+                        if (production[i]==="BO2"){
+                            stack.push("true|false")
+                        }else if (production[i]==="PA"){
+                            stack.push("nombre")
+                        }else{
+                            stack.push(production[i])
+                        }
+                    }
+                    console.log("la nueva pila es: ",stack)
+                }else{
+                    console.log("no se pudo encontrar produccion")
+                    console.log("la pila quedo asi: ", stack)
+                    break;
+                }
+            }else{
+                console.log(x, " es un terminal")
+                let y = stringStack.pop();
+                console.log("el elemento tope de la cadena es: ", y)
+                if (stringStack.length===3){
+                    let regex=/^true|false*$/
+                    if (regex.test(y)){
+                        y="true|false"
+                    }
+                }
+                if (stringStack.length===1){
+                    let regex = /^[a-zA-Z]+$/
+                    if (regex.test(y)){
+                        y="nombre"
+                    }
+                }
+                if(x===y){
+                    console.log("sintaxis valida entre pila y cadena")
+                }else{
+                    console.log("sintaxis invalida entre pila y cadena")
+                    console.log("la pila queda asi:", stack)
+                    break;
+                }
+            }
+        }
     }
 
     const handleCheck = (e) =>{
@@ -511,7 +698,9 @@ const Chomsky = () => {
         //validarSintaxisIf(codeContent)
         //validarSintaxisCallFunction(codeContent)
         //validarCondiciones(codeContent)
-        validarDeclaracionVariable(codeContent)
+        //validarStringDeclaracionVariable(codeContent)
+        //validarIntDeclarationVariable(codeContent)
+        //validarDoubleDeclarationVariable(codeContent)
 
 
     }
