@@ -5,6 +5,25 @@ import { Editor } from '@monaco-editor/react';
 import { useState, useRef } from 'react';
 
 
+//ATENCION VICTOR
+/*
+EN EL DIV DONDO VA EL CAMPO DE TEXTO DONDE PONEMOS LA CADENA QUE SE VA A VALIDAR
+HAY QUE PONER BOTONES PARA SELECCIONAR
+ejemplo:
+|modulo|class|
+
+le da click a class y el boton se pone rojo, ahora opc vale 2 y cuando le da a validar segun la opcion activa el
+validarSintaxisClase por ejemplo y asi con todos
+
+ */
+
+//TAMBIEN
+
+/*
+EN CADA METODO DE VALIDAR HAY CONSOLE.LOGS QUE SON LO QUE SE DEBERIA MOSTRAR EN EL FRONT, VAS A VER LA FORMA DE
+PONER TODO EL LOG EN UNA VARIABLE POR EJEMPLO STACKINFO Y UNA VEZ QUE ACABE LA VALIDACION MUESTRE EL RESULTADO EN OTRO DIV
+O AL MISMO TIEMPO QUE LE AGREGUES INFO Y OBVIAMENTE QUE SE VEA BIEN
+ */
 
 const Chomsky = () => {
     const [codeContent, setCodeContent]= useState("")
